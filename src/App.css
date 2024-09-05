@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  margin: 16px auto;
+}
+
+.buttonFlex {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.inputFlex {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,43 @@
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn.primary {
+  background-color: #3171DE;
+  color: #FFF;
+}
+.btn.secondary {
+  background-color: #D32F2F;
+  color: #FFF;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+.icon {
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
