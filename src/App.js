@@ -1,56 +1,42 @@
 import './App.css';
 import Button from './components/Button/Button';
-import Input from './components/Input/Input';
+import Toast from './components/Toast/Toast';
 import { useState } from 'react';
 
 function App() {
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
+  const [toast, setToast] = useState(null);
 
-  const handleSubmitButton = () => {
-    alert(`Email is ${email}`);
+  const showToast = (message, type) => {
+    setToast({message, type});
   };
 
-  const handleCancelButton = () => {
-    setEmail('');
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    setEmailError(validateEmail(e.target.value) ? '' : 'Invalid email address');
-  };
-
-  const validateEmail = (email) => {
-    return /\S+@\S+\.\S+/.test(email);
+  const removeToast = () => {
+    setToast(null);
   };
 
   return (
     <div className="App">
       <h1>React Components</h1>
-      <div className="inputFlex">
-        <Input 
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={handleEmailChange}
-          errorMessage={emailError}
-          customStyles={{ width: '300px' }}
-        />
-      </div>
       <div className="buttonFlex">
         <Button 
-          label="submit"
+          label="info"
           variant="primary"
-          onClick={handleSubmitButton}
-          loading={loading}
+          onClick={() => showToast("info toast", "info")}
         />
         <Button 
-          label="cancel"
+          label="error"
           variant="secondary"
-          onClick={handleCancelButton}
+          onClick={() => showToast("error toast", "error")}
         />
       </div>
+      {toast && (
+        <Toast 
+          message={toast.message}
+          type={toast.type}
+          duration={3000}
+          onClose={removeToast}
+        />
+      )}
     </div>
   );
 };
