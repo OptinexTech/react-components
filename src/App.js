@@ -1,39 +1,40 @@
 import './App.css';
-import Tabs from './components/Tabs';
+import { useState, useEffect } from 'react';
+import Toggle from './components/Toggle';
 
 function App() {
-  const tabsData = [
-    {
-      label: 'Home',
-      content: <p>This is the home tab content.</p>,
-      icon: '🏠'
-    },
-    {
-      label: 'Profile',
-      content: <p>This is your profile tab content.</p>,
-      icon: '👤',
-    },
-    {
-      label: 'Settings',
-      content: <p>This is the settings tab content.</p>,
-      icon: '⚙️'
-    },
-  ];
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('dark-mode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  const handleDarkModeToggle = (enabled) => {
+    setIsDarkMode(enabled);
+    localStorage.setItem('dark-mode', JSON.stringify(enabled));
+  };
+
+  useEffect(() => {
+    if(isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  },[isDarkMode]);
 
   return (
     <div className="App">
-      <h1>React Components</h1>
-      <Tabs 
-        tabs={tabsData}
-        defaultActiveIndex={0}
-        onTabChange={(index) => console.log(`Active tab Index: ${index}`)}
-        customStyles={{
-          activeTab: { backgroundColor: '#3171DE', color: 'white' },
-          header: { borderBottom: '2px solid #3171DE' }
-        }}
+      <h1>{isDarkMode ? 'Dark Mode Enabled' : 'Light mode enabled'}</h1>
+      <Toggle 
+        label="Dark Mode"
+        initial={isDarkMode}
+        onToggle={handleDarkModeToggle}
+        onColor="#28a745"
+        offColor="#ccc"
+        size="large"
       />
+      <p>Toggle to switch between dark and light mode</p>
     </div>
   );
 };
 
-export default App;
+export default App; 
