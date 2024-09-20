@@ -5,17 +5,3 @@
   align-items: center;
   gap: 16px;
 }
-
-body {
-  background-color: white;
-  color: black;
-}
-
-body.dark-mode {
-  background-color: #121212;
-  color: white;
-}
-
-h1, p {
-  color: inherit;
-}

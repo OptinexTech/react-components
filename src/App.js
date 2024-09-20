@@ -1,40 +1,14 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import Toggle from './components/Toggle';
+import { faq } from './data/faq';
+import Accordion from './components/Accordion';
 
-function App() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem('dark-mode');
-    return savedMode ? JSON.parse(savedMode) : false;
-  });
-
-  const handleDarkModeToggle = (enabled) => {
-    setIsDarkMode(enabled);
-    localStorage.setItem('dark-mode', JSON.stringify(enabled));
-  };
-
-  useEffect(() => {
-    if(isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  },[isDarkMode]);
-
+const App = () => {
   return (
     <div className="App">
-      <h1>{isDarkMode ? 'Dark Mode Enabled' : 'Light mode enabled'}</h1>
-      <Toggle 
-        label="Dark Mode"
-        initial={isDarkMode}
-        onToggle={handleDarkModeToggle}
-        onColor="#28a745"
-        offColor="#ccc"
-        size="large"
-      />
-      <p>Toggle to switch between dark and light mode</p>
+      <h1>Frequently Asked Questions</h1>
+      <Accordion items={faq} />
     </div>
   );
 };
 
-export default App; 
+export default App;
