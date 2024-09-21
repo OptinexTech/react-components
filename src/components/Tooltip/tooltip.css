@@ -1,0 +1,92 @@
+/* Tooltip wrapper */
+.tooltip-wrapper {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Tooltip box */
+.tooltip-box {
+  position: absolute;
+  z-index: 999;
+  white-space: nowrap;
+  opacity: 0.9;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  background-color: #333; /* Ensure the background color matches your arrow color */
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Tooltip positions */
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+}
+
+.tooltip-right {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+}
+
+.tooltip-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+}
+
+.tooltip-left {
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  margin-right: 8px;
+}
+
+/* Tooltip arrow */
+.tooltip-box::after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+}
+
+/* Arrow for top */
+.tooltip-top::after {
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px 5px 0;
+  border-color: #333 transparent transparent transparent; /* Arrow matches tooltip box color */
+}
+
+/* Arrow for right */
+.tooltip-right::after {
+  top: 50%;
+  left: 0%;
+  margin-top: -5px;
+  border-width: 5px 0 5px 5px;
+  border-color: transparent transparent transparent #333;
+}
+
+/* Arrow for bottom */
+.tooltip-bottom::after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 0 5px 5px;
+  border-color: transparent transparent #333 transparent;
+}
+
+/* Arrow for left */
+.tooltip-left::after {
+  top: 50%;
+  right: -5px;
+  margin-top: -5px;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent #333 transparent transparent;
+}
