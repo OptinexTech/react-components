@@ -1,50 +1,18 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import ProgressBar from './components/ProgressBar';
+import Carousel from './components/Carousel';
 
 const App = () => {
-  const [progress, setProgress] = useState(0);
-  const [isUploading, setIsUploading] = useState(false);
-
-  const startUpload = () => {
-    setProgress(0);
-    setIsUploading(true); // Set to true to start uploading
-  };
-
-  useEffect(() => {
-    if (isUploading && progress < 100) {
-      const interval = setInterval(() => {
-        setProgress((prevProgress) => {
-          if (prevProgress >= 100) {
-            clearInterval(interval);
-            setIsUploading(false);
-            return 100;
-          }
-          return prevProgress + 10; // Increment progress by 10
-        });
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [isUploading, progress]);
+  const imageUrls = [
+    'https://via.placeholder.com/600x300/ff7f7f/333333?text=Slide+1',
+    'https://via.placeholder.com/600x300/ffbf7f/333333?text=Slide+2',
+    'https://via.placeholder.com/600x300/7fbfff/333333?text=Slide+3',
+    'https://via.placeholder.com/600x300/bf7fff/333333?text=Slide+4',
+  ];
 
   return (
     <div className="App">
-      <h1>File Upload Progress Simulation</h1>
-      {progress < 100 ? (
-        <>
-          <ProgressBar 
-            progress={progress}
-            color='green'
-            height='14px'
-          />
-          <p>Upload Progress: {progress}%</p> {/* Show progress as a percentage */}
-        </>
-      ) : (
-        <p>Upload Complete!</p>
-      )}
-      <button onClick={startUpload} disabled={isUploading && progress < 100}>
-        {isUploading ? progress < 100 ? 'Uploading...' : 'Reupload' : 'Start Upload'}
-      </button>
+      <h1>Dynamic Carousel in React</h1>
+      <Carousel images={imageUrls} autoSlide={true} interval={3000} />
     </div>
   );
 };
