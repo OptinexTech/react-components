@@ -1,18 +1,26 @@
 import './App.css';
-import Carousel from './components/Carousel';
+import { useState } from 'react';
+import Pagination from './components/Pagination';
 
 const App = () => {
-  const imageUrls = [
-    'https://via.placeholder.com/600x300/ff7f7f/333333?text=Slide+1',
-    'https://via.placeholder.com/600x300/ffbf7f/333333?text=Slide+2',
-    'https://via.placeholder.com/600x300/7fbfff/333333?text=Slide+3',
-    'https://via.placeholder.com/600x300/bf7fff/333333?text=Slide+4',
-  ];
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 8;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="App">
-      <h1>Dynamic Carousel in React</h1>
-      <Carousel images={imageUrls} autoSlide={true} interval={3000} />
+      <h1>Dynamic Pagination in React</h1>
+      <div>
+        <p>Displaying page {currentPage} content here</p>
+      </div>
+      <Pagination 
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
