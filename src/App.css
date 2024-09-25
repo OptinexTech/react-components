@@ -4,4 +4,22 @@
   justify-content: center;
   align-items: center;
   gap: 36px;
+  text-align: center;
+  margin-top: 72px;
+}
+
+.loading-button {
+  width: 120px;
+  padding: 10px 20px;
+  margin-top: 16px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #3171DE;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.loading-button:disabled {
+  cursor: not-allowed;
 }
