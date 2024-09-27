@@ -1,31 +1,26 @@
 import './App.css';
-import Badge from './components/Badge';
+import { useState } from 'react';
+import OffCanvas from './components/OffCanvas';
+import Button from './components/Button';
 
 const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <div className="App">
-      <Badge text="new" />
-
-      {/* Badge with custom styles */}
-      <Badge
-        text="Success"
-        color='#fff'
-        background='green'
-        size='large'
-        borderRadius='20px'
-        customStyles={{
-          fontWeight: 'bold',
-          letterSpacing: '1px'
-        }}
-      />
-
-      {/* Small badge with custom color and background */}
-      <Badge
-        text={"Info"}
-        color='#000'
-        background='#f0ad4e'
-        size='small'
-      />
+      <Button label="Open Menu" variant="primary" onClick={toggleMenu} />
+      <OffCanvas isOpen={isMenuOpen} onClose={toggleMenu} position='left'>
+        <nav>
+          <ul style={{ listStyleType: 'none', padding: 0 }}>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+        </nav>
+      </OffCanvas>
     </div>
   );
 };

@@ -1,0 +1,57 @@
+.offcanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px 32px;
+  transition: transform ease;
+  transform: translateX(-100%);
+}
+
+.offcanvas.open {
+  transform: translateX(0);
+}
+
+.offcanvas-right {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.offcanvas-right.open {
+  transform: translateX(0);
+}
+
+.offcanvas-left {
+  left: 0;
+}
+
+.offcanvas-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #000000b3;
+}
+
+.offcanvas-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.offcanvas-close-btn:hover {
+  color: #f00;
+}
+
+.offcanvas-content {
+  padding-top: 40px;
+}
