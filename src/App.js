@@ -1,26 +1,46 @@
 import './App.css';
 import { useState } from 'react';
-import OffCanvas from './components/OffCanvas';
-import Button from './components/Button';
+import RadioGroup from './components/RadioGroup';
 
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedPayment, setSelectedPayment] = useState('credit_card');
+  const [selectedPlan, setSelectedPlan] = useState('basic');
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const plans = [
+    { label: 'Basic Plan - $5/month', value: 'basic' },
+    { label: 'Standard Plan - $10/month', value: 'standard' },
+    { label: 'Premium Plan - $20/month', value: 'premium' },
+  ];
+
+  const paymentMethods = [
+    { label: 'Credit Card', value: 'credit_card' },
+    { label: 'PayPal', value: 'paypal' },
+    { label: 'Bank Transfer', value: 'bank_transfer' },
+  ];
 
   return (
     <div className="App">
-      <Button label="Open Menu" variant="primary" onClick={toggleMenu} />
-      <OffCanvas isOpen={isMenuOpen} onClose={toggleMenu} position='left'>
-        <nav>
-          <ul style={{ listStyleType: 'none', padding: 0 }}>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-          </ul>
-        </nav>
-      </OffCanvas>
+      <h2>Select Payment Method</h2>
+      <RadioGroup 
+        options={paymentMethods}
+        name={'payment'}
+        selectedValue={selectedPayment}
+        onChange={setSelectedPayment}
+        direction='horizontal'
+        color='#222'
+        fontSize='18px'
+        radioColor='#ff5733'
+        radioSize='20px'
+      />
+
+      <h2 style={{ marginTop: '32px' }}>Select Subscription Plan</h2>
+      <RadioGroup 
+        options={plans}
+        name={'subscription'}
+        selectedValue={selectedPlan}
+        onChange={setSelectedPlan}
+        color='#000'
+      />
     </div>
   );
 };

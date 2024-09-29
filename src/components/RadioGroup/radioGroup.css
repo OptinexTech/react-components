@@ -1,0 +1,37 @@
+.radio-group {
+  display: flex;
+  gap: 15px;
+}
+
+.radio-group.vertical {
+  flex-direction: column;
+}
+
+.radio-group.horizontal {
+  flex-direction: row;
+}
+
+.radio-label {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.radio-label#text {
+  margin-top: 2px;
+}
+
+.radio-label:hover {
+  color: #0056b3;
+}
+
+.radio-label input {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.radio-label input:checked {
+  transform: scale(1.1);
+}
