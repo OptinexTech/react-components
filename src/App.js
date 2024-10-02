@@ -1,29 +1,31 @@
 import './App.css';
-import { useState } from 'react';
-import Button from './components/Button';
-import Menu from './components/Menu';
+import Image from './components/Image';
 
 const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const menuItems = [
-    { label: 'Profile', onClick: () => alert('Profile clicked'), icon: '👤' },
-    { label: 'Settings', onClick: () => alert('Settings clicked'), icon: '⚙️' },
-    { label: 'Logout', onClick: () => alert('Logout clicked'), icon: '🚪' },
-  ];
- 
   return (
     <div className="App">
-      <h2>Dynamic Menu Component</h2>
-      <Button
-        label="Open Menu"
-        variant={'primary'}
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      <h2>Dynamic & Customizable Image component Demo</h2>
+
+      <Image 
+        src="https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        alt="Product Name"
+        width='240px'
+        height='240px'
+        borderRadius={'10px'}
+        hoverEffect={true}
+        lazy={true}
       />
-      <Menu 
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-        menuItems={menuItems}
+
+      <Image 
+        src="https://images.pexels.com/photos/2204539/pexels-photo-2204539.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        alt="User Avatar"
+        width='150px'
+        height='150px'
+        borderRadius={'50%'}
+        boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'
+        hoverEffect={false}
+        lazy={false}
+        onClick={() => alert('Profile picture clicked')}
       />
     </div>
   );
