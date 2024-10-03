@@ -1,31 +1,51 @@
 import './App.css';
-import Image from './components/Image';
+import { useState } from 'react';
+import Navs from './components/Navs';
 
 const App = () => {
+  const horizontalNavItems = [
+    { name: 'Home', link: '/' },
+    { name: 'About Us', link: '/about' },
+    { name: 'Services', link: '/services' },
+    { name: 'Contact Us', link: '/contact' },
+  ];
+  
+  const verticalNavItems = [
+    { name: 'Dashboard', link: '/dashboard' },
+    { name: 'Profile', link: '/profile' },
+    { name: 'Settings', link: '/settings' },
+    { name: 'Logout', link: '/logout' },
+  ];
+
+  const [activeHorNav, setActiveHorNav] = useState('Home');
+  const [activeVerNav, setActiveVerNav] = useState('Dashboard');
+  
   return (
     <div className="App">
-      <h2>Dynamic & Customizable Image component Demo</h2>
+      <h2>Dynamic & Customizable Navigation Demo with Active State</h2>
 
-      <Image 
-        src="https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        alt="Product Name"
-        width='240px'
-        height='240px'
-        borderRadius={'10px'}
+      <Navs 
+        items={horizontalNavItems}
+        orientation='horizontal'
+        backgroundColor='#f8f8f8'
+        textColor='#333'
+        activeColor='white'
         hoverEffect={true}
-        lazy={true}
+        borderRadius={'10px'}
+        onClick={(item) => setActiveHorNav(item.name)}
+        activeItem={activeHorNav}
       />
 
-      <Image 
-        src="https://images.pexels.com/photos/2204539/pexels-photo-2204539.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        alt="User Avatar"
-        width='150px'
-        height='150px'
-        borderRadius={'50%'}
-        boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'
-        hoverEffect={false}
-        lazy={false}
-        onClick={() => alert('Profile picture clicked')}
+      <Navs 
+        items={verticalNavItems}
+        orientation='vertical'
+        backgroundColor='#fff'
+        textColor='#3171DE'
+        activeColor='white'
+        hoverEffect={true}
+        borderRadius={'10px'}
+        onClick={(item) => setActiveVerNav(item.name)}
+        activeItem={activeVerNav}
       />
     </div>
   );
