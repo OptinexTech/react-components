@@ -1,52 +1,47 @@
 import './App.css';
-import { useState } from 'react';
-import Navs from './components/Navs';
+import { useState, useEffect, useCallback } from 'react';
+import Placeholder from './components/Placeholder';
+import Button from './components/Button';
 
 const App = () => {
-  const horizontalNavItems = [
-    { name: 'Home', link: '/' },
-    { name: 'About Us', link: '/about' },
-    { name: 'Services', link: '/services' },
-    { name: 'Contact Us', link: '/contact' },
-  ];
-  
-  const verticalNavItems = [
-    { name: 'Dashboard', link: '/dashboard' },
-    { name: 'Profile', link: '/profile' },
-    { name: 'Settings', link: '/settings' },
-    { name: 'Logout', link: '/logout' },
-  ];
+  const [isLoading, setIsLoading] = useState(true);
+  const [profileData, setProfileData] = useState(null);
 
-  const [activeHorNav, setActiveHorNav] = useState('Home');
-  const [activeVerNav, setActiveVerNav] = useState('Dashboard');
-  
+  const fetchProfileData = useCallback(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setProfileData({
+        name: 'John Doe',
+        jobTitle: 'Software Engineer',
+        profilePic: 'https://via.placeholder.com/150'
+      });
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
+  useEffect(() => {
+    fetchProfileData();
+  }, [fetchProfileData]);
+
   return (
     <div className="App">
-      <h2>Dynamic & Customizable Navigation Demo with Active State</h2>
-
-      <Navs 
-        items={horizontalNavItems}
-        orientation='horizontal'
-        backgroundColor='#f8f8f8'
-        textColor='#333'
-        activeColor='white'
-        hoverEffect={true}
-        borderRadius={'10px'}
-        onClick={(item) => setActiveHorNav(item.name)}
-        activeItem={activeHorNav}
-      />
-
-      <Navs 
-        items={verticalNavItems}
-        orientation='vertical'
-        backgroundColor='#fff'
-        textColor='#3171DE'
-        activeColor='white'
-        hoverEffect={true}
-        borderRadius={'10px'}
-        onClick={(item) => setActiveVerNav(item.name)}
-        activeItem={activeVerNav}
-      />
+      <h2>Professional Profile Card with Placeholder</h2>
+      <div className="profile-card">
+        {isLoading ? (
+          <>
+            <Placeholder type="image" width='150px' height='150px' borderRadius='50%' />
+            <Placeholder type='text' width='60%' height='20px' />
+            <Placeholder type='text' width='40%' height='20px' />
+          </>
+        ) : (
+          <>
+            <img src={profileData.profilePic} alt="profile" className='profile-pic' />
+            <h3>{profileData.name}</h3>
+            <p>{profileData.jobTitle}</p>
+          </>
+        )}
+      </div>
+      <Button label={'Reload'} variant={'primary'} onClick={fetchProfileData} />
     </div>
   );
 };
