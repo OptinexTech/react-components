@@ -1,47 +1,43 @@
 import './App.css';
-import { useState, useEffect, useCallback } from 'react';
-import Placeholder from './components/Placeholder';
-import Button from './components/Button';
+import Card from './components/Card';
 
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [profileData, setProfileData] = useState(null);
-
-  const fetchProfileData = useCallback(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setProfileData({
-        name: 'John Doe',
-        jobTitle: 'Software Engineer',
-        profilePic: 'https://via.placeholder.com/150'
-      });
-      setIsLoading(false);
-    }, 3000);
-  }, []);
-
-  useEffect(() => {
-    fetchProfileData();
-  }, [fetchProfileData]);
-
   return (
     <div className="App">
-      <h2>Professional Profile Card with Placeholder</h2>
-      <div className="profile-card">
-        {isLoading ? (
-          <>
-            <Placeholder type="image" width='150px' height='150px' borderRadius='50%' />
-            <Placeholder type='text' width='60%' height='20px' />
-            <Placeholder type='text' width='40%' height='20px' />
-          </>
-        ) : (
-          <>
-            <img src={profileData.profilePic} alt="profile" className='profile-pic' />
-            <h3>{profileData.name}</h3>
-            <p>{profileData.jobTitle}</p>
-          </>
-        )}
+      <h2>Dynamic & Customizable Card Component</h2>
+      <div className="container">
+        <Card 
+          title={'Dynamic Card with Badge'}
+          description={'This card has a customizable badge'}
+          imageSrc={'https://via.placeholder.com/300'}
+          badge='New!'
+        />
+
+        <Card 
+          title={'Card with Multiple Buttons'}
+          description={'This card has multiple customizable buttons'}
+          imageSrc={'https://via.placeholder.com/300'}
+          buttons={[
+            {
+              label: 'Save',
+              onClick: () => alert('Saved'),
+              style: { backgroundColor: '#4CAF50' }
+            },
+            {
+              label: 'Delete',
+              onClick: () => alert('Deleted'),
+              style: { backgroundColor: '#f44336' }
+            }
+          ]}
+        />
+
+        <Card 
+          title={'Horizontal Layout Card'}
+          description={'This card has a horizontal layout'}
+          imageSrc={'https://via.placeholder.com/150'}
+          layout='horizontal'
+        />
       </div>
-      <Button label={'Reload'} variant={'primary'} onClick={fetchProfileData} />
     </div>
   );
 };

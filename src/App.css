@@ -12,32 +12,9 @@ body {
   background: #eaeafd;
 }
 
-.profile-card {
-  width: 300px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background-color: #fff;
-  text-align: center;
+.container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-h3 {
-  margin: 10px 0;
-  font-size: 20px;
-}
-
-p {
-  font-size: 16px;
-  color: #666;
+  gap: 32px;
 }
