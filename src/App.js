@@ -1,42 +1,22 @@
 import './App.css';
-import Card from './components/Card';
+import List from './components/List';
 
 const App = () => {
+  const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape'];
+
   return (
     <div className="App">
-      <h2>Dynamic & Customizable Card Component</h2>
-      <div className="container">
-        <Card 
-          title={'Dynamic Card with Badge'}
-          description={'This card has a customizable badge'}
-          imageSrc={'https://via.placeholder.com/300'}
-          badge='New!'
-        />
+      <h2>Dynamic & Customizable List Component</h2>
+      <div className="main-container">
+        <div className="container">
+          <h3>Unordered List with Search</h3>
+          <List items={items} type='unordered' searchable={true} />
+        </div>
 
-        <Card 
-          title={'Card with Multiple Buttons'}
-          description={'This card has multiple customizable buttons'}
-          imageSrc={'https://via.placeholder.com/300'}
-          buttons={[
-            {
-              label: 'Save',
-              onClick: () => alert('Saved'),
-              style: { backgroundColor: '#4CAF50' }
-            },
-            {
-              label: 'Delete',
-              onClick: () => alert('Deleted'),
-              style: { backgroundColor: '#f44336' }
-            }
-          ]}
-        />
-
-        <Card 
-          title={'Horizontal Layout Card'}
-          description={'This card has a horizontal layout'}
-          imageSrc={'https://via.placeholder.com/150'}
-          layout='horizontal'
-        />
+        <div className="container">
+          <h3>Ordered List with filter</h3>
+          <List items={items} type='ordered' filterable={true} />
+        </div>
       </div>
     </div>
   );
