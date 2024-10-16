@@ -1,23 +1,19 @@
 import './App.css';
-import List from './components/List';
+import { useState } from 'react';
+import DateInput from './components/DateInput';
 
 const App = () => {
-  const items = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape'];
+  const [selectedDate, setSelectedDate] = useState('');
 
   return (
     <div className="App">
-      <h2>Dynamic & Customizable List Component</h2>
-      <div className="main-container">
-        <div className="container">
-          <h3>Unordered List with Search</h3>
-          <List items={items} type='unordered' searchable={true} />
-        </div>
-
-        <div className="container">
-          <h3>Ordered List with filter</h3>
-          <List items={items} type='ordered' filterable={true} />
-        </div>
-      </div>
+      <h2>Dynamic Date Input Component</h2>
+      <DateInput 
+        label='Select Date'
+        value={selectedDate}
+        onDateChange={setSelectedDate}
+      />
+      <p>Date: {selectedDate || 'No date selected'}</p>
     </div>
   );
 };
