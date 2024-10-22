@@ -1,48 +1,33 @@
 import './App.css';
-import { useState } from 'react';
-import Modal from './components/Modal';
-import Button from './components/Button';
+import FAB from './components/FAB';
+import { AiOutlineFile, AiOutlineMessage } from 'react-icons/ai';
 
 const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const deleteUser = () => {
-    console.log('User deleted');
-    closeModal();
-  };
+  const actions = [
+    { 
+      label: 'New Task', 
+      icon: <AiOutlineFile />, 
+      onClick: () => alert('New Task Created'), 
+      color: '#FF5722' 
+    },
+    { 
+      label: 'New Chat', 
+      icon: <AiOutlineMessage />, 
+      onClick: () => alert('Starting New Chat'), 
+      color: '#4CAF50' 
+    }
+  ];
 
   return (
     <div className="App">
-      <h1>User Management</h1>
-      <Button label={'Delete User'} variant={'primary'} onClick={openModal} />
-      <Modal
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        title={'Delete User Confirmation'}
-        width="400px"
-        height="200px"
-      >
-        <p>
-          Are you sure you want to delete this user? <br />
-          This action cannot be undone.
-        </p>
-        <div>
-          <Button 
-            label="Confirm"
-            variant={'secondary'}
-            onClick={deleteUser}
-            customStyles={{ marginRight: '12px' }}
-          />
-          <Button 
-            label="Cancel"
-            variant={'primary'}
-            onClick={closeModal}
-          />
-        </div>
-      </Modal>
+      <h1>Floating Action Button (FAB)</h1>
+      <FAB 
+        icon="+"
+        actions={actions}
+        position={'bottom-right'}
+        color={'#3171DE'}
+        size={'60px'}
+      />      
     </div>
   );
 };
