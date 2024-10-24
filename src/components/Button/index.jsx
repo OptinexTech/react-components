@@ -2,6 +2,7 @@ import './button.css';
 
 const Button = ({
   label,
+  type = 'button',
   onClick,
   variant,
   customStyles,
@@ -11,7 +12,8 @@ const Button = ({
 }) => {
   return (
     <>
-      <button 
+      <button
+        type={type} 
         className={`btn ${variant} ${customClass}`}
         style={customStyles}
         onClick={onClick}
