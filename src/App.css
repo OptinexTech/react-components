@@ -12,15 +12,19 @@ body {
   background: #eaeafd;
 }
 
-.main-container {
+.form-container {
   display: flex;
   flex-direction: column;
-  gap: 72px;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin: 0 auto 4px auto;
 }
